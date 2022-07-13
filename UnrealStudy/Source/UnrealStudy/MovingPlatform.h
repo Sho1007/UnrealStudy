@@ -17,8 +17,21 @@ class UNREALSTUDY_API AMovingPlatform : public AStaticMeshActor
 public:
 	AMovingPlatform();
 
+	bool GoForward = true;
+
 	UPROPERTY(EditAnywhere)
 	float Speed;
+
+	UPROPERTY(EditAnywhere, Meta = (MakeEditWidget = true))
+	FVector Direction;
+
+	UPROPERTY(EditAnywhere)
+	float MoveDistance;
+
+private:
+	FVector GlobalTargetLocation;
+	FVector GlobalStartLocation;
+	FVector GlobalDirection;
 
 protected:
 	virtual void BeginPlay() override;

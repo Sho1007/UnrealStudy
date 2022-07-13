@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Math/Vector.h"
 #include "MovingPlatform.h"
 
 AMovingPlatform::AMovingPlatform()
@@ -19,6 +19,10 @@ void AMovingPlatform::BeginPlay()
 		SetReplicates(true);
 		SetReplicateMovement(true);
 	}
+
+	GlobalStartLocation = GetActorLocation();
+	GlobalDirection = (GetTransform().TransformPosition(Direction) - GlobalStartLocation).GetSafeNormal();
+	GlobalTargetLocation = GlobalStartLocation + (GlobalDirection * MoveDistance);
 }
 
 void AMovingPlatform::Tick(float DeltaTime)
@@ -28,7 +32,24 @@ void AMovingPlatform::Tick(float DeltaTime)
 	if (HasAuthority()) 
 	{
 		FVector Location = GetActorLocation();
-		Location += FVector(1, 0, 0) * Speed * DeltaTime;
+
+		if (GoForward)
+		{
+			if ((GlobalStartLocation - Location).Length() >= MoveDistance)
+				GoForward = !GoForward;
+		}
+		else
+		{
+			if ((Location - GlobalTargetLocation).Length() >= MoveDistance)
+			{
+				GoForward = !GoForward;
+			}
+		}
+
+		if (GoForward)
+			Location += (GlobalDirection * Speed * DeltaTime);
+		else
+			Location -= (GlobalDirection * Speed * DeltaTime);
 
 		SetActorLocation(Location);
 	}
