@@ -1,12 +1,12 @@
 {
     "Version": "1.1",
     "Data": {
-        "Source": "d:\\unrealproject\\unrealstudy\\source\\unrealstudy\\unrealstudy.cpp",
+        "Source": "d:\\git\\unrealstudy\\unrealstudy\\source\\unrealstudy\\unrealstudy.cpp",
         "ProvidedModule": "",
-        "PCH": "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "PCH": "d:\\git\\unrealstudy\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
         "Includes": [
-            "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealeditor\\development\\unrealstudy\\definitions.unrealstudy.h",
-            "d:\\unrealproject\\unrealstudy\\source\\unrealstudy\\unrealstudy.h"
+            "d:\\git\\unrealstudy\\unrealstudy\\intermediate\\build\\win64\\unrealeditor\\development\\unrealstudy\\definitions.unrealstudy.h",
+            "d:\\git\\unrealstudy\\unrealstudy\\source\\unrealstudy\\unrealstudy.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

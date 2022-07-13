@@ -1,18 +1,16 @@
-D:\UnrealProject\UnrealStudy\Source\UnrealStudy\UnrealStudyCharacter.cpp
+D:\Git\UnrealStudy\UnrealStudy\Source\UnrealStudy\UnrealStudyCharacter.cpp
 /I .
-/I D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealStudy
-/I D:\UnrealProject\UnrealStudy\Source
-/I Runtime
-/I Runtime\TraceLog\Public
-/I Runtime\Core\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
-/I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
+/I Runtime
 /I ..\Shaders\Shared
 /I Runtime\Engine\Classes
 /I Runtime\Engine\Public
+/I Runtime\TraceLog\Public
+/I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreOnline
 /I Runtime\CoreOnline\Public
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
+/I Runtime\CoreUObject\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NetCore
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
@@ -253,6 +251,8 @@ D:\UnrealProject\UnrealStudy\Source\UnrealStudy\UnrealStudyCharacter.cpp
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController
 /I Developer\AnimationDataController\Public
+/I D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealStudy
+/I D:\Git\UnrealStudy\UnrealStudy\Source
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AugmentedReality
 /I Runtime\AugmentedReality\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\MRMesh
@@ -277,12 +277,12 @@ D:\UnrealProject\UnrealStudy\Source\UnrealStudy\UnrealStudyCharacter.cpp
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/FI"D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/FI"D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\Definitions.UnrealStudy.h"
-/Yu"D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-/Fo"D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\UnrealStudyCharacter.cpp.obj"
-/sourceDependencies D:\UnrealProject\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\UnrealStudyCharacter.cpp.json
+/FI"D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/FI"D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\Definitions.UnrealStudy.h"
+/Yu"D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealStudyEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+/Fo"D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\UnrealStudyCharacter.cpp.obj"
+/sourceDependencies D:\Git\UnrealStudy\UnrealStudy\Intermediate\Build\Win64\UnrealEditor\Development\UnrealStudy\UnrealStudyCharacter.cpp.json
 /Zc:inline
 /nologo
 /Oi

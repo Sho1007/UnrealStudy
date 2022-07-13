@@ -32,6 +32,12 @@
     <Filter Include="Source\UnrealStudy">
       <UniqueIdentifier>{5251B292-1A03-3F1F-9326-0DE0A0F2F582}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\UnrealStudy\MovingPlatform.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MovingPlatform.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
     <None Include="..\..\Source\UnrealStudy\UnrealStudy.Build.cs">
       <Filter>Source\UnrealStudy</Filter>
     </None>

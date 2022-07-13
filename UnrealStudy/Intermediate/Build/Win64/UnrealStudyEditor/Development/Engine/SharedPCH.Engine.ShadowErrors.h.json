@@ -1,10 +1,10 @@
 {
     "Version": "1.1",
     "Data": {
-        "Source": "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.cpp",
+        "Source": "d:\\git\\unrealstudy\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.h",
+            "d:\\git\\unrealstudy\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.h",
             "d:\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\public\\enginesharedpch.h",
             "d:\\epic games\\ue_5.0\\engine\\source\\runtime\\core\\public\\containers\\containersfwd.h",
             "d:\\epic games\\ue_5.0\\engine\\source\\runtime\\core\\public\\hal\\platform.h",

@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\UnrealProject\\UnrealStudy\\Source\\UnrealStudy\\UnrealStudy.Build.cs",
-		"D:\\UnrealProject\\UnrealStudy\\Source\\UnrealStudy.Target.cs",
-		"D:\\UnrealProject\\UnrealStudy\\Source\\UnrealStudyEditor.Target.cs"
+		"D:\\Git\\UnrealStudy\\UnrealStudy\\Source\\UnrealStudy\\UnrealStudy.Build.cs",
+		"D:\\Git\\UnrealStudy\\UnrealStudy\\Source\\UnrealStudy.Target.cs",
+		"D:\\Git\\UnrealStudy\\UnrealStudy\\Source\\UnrealStudyEditor.Target.cs"
 	],
 	"EngineVersion": "5.0.0"
 }
