@@ -1,0 +1,19 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealstudy\\unrealstudygamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealstudyeditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealeditor\\development\\unrealstudy\\definitions.unrealstudy.h",
+            "d:\\unrealproject\\unrealstudy\\source\\unrealstudy\\unrealstudygamemode.h",
+            "d:\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "d:\\epic games\\ue_5.0\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "d:\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\serverstatreplicator.generated.h",
+            "d:\\epic games\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\gamemodebase.generated.h",
+            "d:\\unrealproject\\unrealstudy\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealstudy\\unrealstudygamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
