@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Math/Vector.h"
 #include "MovingPlatform.h"
+#include "Math/Vector.h"
+
 
 AMovingPlatform::AMovingPlatform()
 {
@@ -29,7 +30,7 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (HasAuthority()) 
+	if (HasAuthority() && ActiveTriggers >= 1)
 	{
 		FVector Location = GetActorLocation();
 
@@ -53,4 +54,14 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 		SetActorLocation(Location);
 	}
+}
+
+void AMovingPlatform::AddActiveTrigger()
+{
+	ActiveTriggers++;
+}
+
+void AMovingPlatform::RemoveActiveTrigger()
+{
+	ActiveTriggers--;
 }

@@ -17,13 +17,13 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudy_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x302ADCB1,
-				0xC329E278,
+				0xE4BAA7AB,
+				0x6604258A,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_UnrealStudy.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_UnrealStudy.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UnrealStudy(Z_Construct_UPackage__Script_UnrealStudy, TEXT("/Script/UnrealStudy"), Z_Registration_Info_UPackage__Script_UnrealStudy, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x302ADCB1, 0xC329E278));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_UnrealStudy(Z_Construct_UPackage__Script_UnrealStudy, TEXT("/Script/UnrealStudy"), Z_Registration_Info_UPackage__Script_UnrealStudy, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xE4BAA7AB, 0x6604258A));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

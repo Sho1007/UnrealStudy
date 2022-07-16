@@ -33,6 +33,13 @@ private:
 	FVector GlobalStartLocation;
 	FVector GlobalDirection;
 
+	UPROPERTY(EditAnywhere)
+	int ActiveTriggers = 1;
+
+public:
+	void AddActiveTrigger();
+	void RemoveActiveTrigger();
+
 protected:
 	virtual void BeginPlay() override;
 

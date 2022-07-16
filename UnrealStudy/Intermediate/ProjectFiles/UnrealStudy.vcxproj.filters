@@ -11,6 +11,7 @@
     <None Include="..\..\Source\UnrealStudyEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitignore" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -36,6 +37,18 @@
       <Filter>Source\UnrealStudy</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\UnrealStudy\MovingPlatform.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\PlatformTrigger.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\PlatformTrigger.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\PuzzlePlatformsGameInstance.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\PuzzlePlatformsGameInstance.h">
       <Filter>Source\UnrealStudy</Filter>
     </ClInclude>
     <None Include="..\..\Source\UnrealStudy\UnrealStudy.Build.cs">
