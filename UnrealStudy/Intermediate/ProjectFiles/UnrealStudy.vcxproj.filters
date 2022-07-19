@@ -30,6 +30,12 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
+    <Filter Include="Config\HoloLens">
+      <UniqueIdentifier>{4C8DD267-CDE7-336F-8602-F5F485D22BAB}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\HoloLens\HoloLensEngine.ini">
+      <Filter>Config\HoloLens</Filter>
+    </None>
     <Filter Include="Source\UnrealStudy">
       <UniqueIdentifier>{5251B292-1A03-3F1F-9326-0DE0A0F2F582}</UniqueIdentifier>
     </Filter>
@@ -71,6 +77,21 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\UnrealStudy\UnrealStudyGameMode.h">
       <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <Filter Include="Source\UnrealStudy\MenuSystem">
+      <UniqueIdentifier>{0311B6FD-AC77-3BAE-B0BA-8836F762B179}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\UnrealStudy\MenuSystem\MainMenu.cpp">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MenuSystem\MainMenu.h">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\MenuSystem\MenuInterface.cpp">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MenuSystem\MenuInterface.h">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
