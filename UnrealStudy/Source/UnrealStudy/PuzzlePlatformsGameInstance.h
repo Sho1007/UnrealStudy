@@ -30,8 +30,9 @@ public:
 	virtual void Host() override;
 
 	UFUNCTION(Exec)
-	void Join(const FString& ServerAddress);
+	virtual void Join(const FString& ServerAddress) override;
 
 private:
 	TSubclassOf<class UMainMenu> MenuClass;
+	class UMainMenu* MainMenu;
 };

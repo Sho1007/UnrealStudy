@@ -25,26 +25,11 @@ void UPuzzlePlatformsGameInstance::LoadMenu()
 {
 	if (!ensure(MenuClass != nullptr)) return;
 
-	UMainMenu* Menu = CreateWidget<UMainMenu>(this, MenuClass);
+	MainMenu = CreateWidget<UMainMenu>(this, MenuClass);
 
-	if (!ensure(Menu != nullptr)) return;
+	if (!ensure(MainMenu != nullptr)) return;
 
-	Menu->AddToViewport();
-	
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-
-	//UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(PlayerController, Menu, EMouseLockMode::LockAlways);
-	// (아래 프로세스를 합친 것)
-	FInputModeUIOnly InputModeData;
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-	InputModeData.SetWidgetToFocus(Menu->TakeWidget());
-	PlayerController->SetInputMode(InputModeData);
-
-	PlayerController->bShowMouseCursor = true;
-
-	Menu->SetMenuInterface(this);
+	MainMenu->Setup(this);
 }
 
 void UPuzzlePlatformsGameInstance::Host()
@@ -55,11 +40,6 @@ void UPuzzlePlatformsGameInstance::Host()
 	if (!ensure(World != nullptr)) return;
 
 	World->ServerTravel("/Game/PuzzlePlatforms/Maps/Map_PuzzleGameMap?listen");
-
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-
-	PlayerController->SetInputMode(FInputModeGameOnly());
-	PlayerController->bShowMouseCursor = false;
 }
 
 void UPuzzlePlatformsGameInstance::Join(const FString& ServerAddress)
