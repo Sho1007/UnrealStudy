@@ -127,3 +127,8 @@ void AUnrealStudyCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
+
+void AUnrealStudyCharacter::OpenInGameMenu()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Open the InGameMenu"));
+}

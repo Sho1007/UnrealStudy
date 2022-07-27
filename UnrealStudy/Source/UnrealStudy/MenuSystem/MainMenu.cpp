@@ -2,10 +2,15 @@
 
 
 #include "./MainMenu.h"
+
 #include "Components/Button.h"
 #include "Components/EditableTextBox.h"
 #include "Components/WidgetSwitcher.h"
+#include "Components/InputComponent.h"
+
 #include "../PuzzlePlatformsGameInstance.h"
+
+
 
 
 
@@ -15,65 +20,26 @@ bool UMainMenu::Initialize()
 	if (Super::Initialize() != true)
 		return false;
 
-	if (!ensure(Host != nullptr)) return false;
-	Host->OnClicked.AddDynamic(this, &UMainMenu::HostBtnOnClicked);
+	if (!ensure(HostButton != nullptr)) return false;
+	HostButton->OnClicked.AddDynamic(this, &UMainMenu::HostServer);
 
-	if (!ensure(Join != nullptr)) return false;
-	Join->OnClicked.AddDynamic(this, &UMainMenu::JoinBtnOnClicked);
+	if (!ensure(JoinButton != nullptr)) return false;
+	JoinButton->OnClicked.AddDynamic(this, &UMainMenu::OpenJoinMenu);
 
-	if (!ensure(ConnectionBtn != nullptr)) return false;
-	ConnectionBtn->OnClicked.AddDynamic(this, &UMainMenu::ConnectionBtnOnClicked);
+	if (!ensure(ConnectionButton != nullptr)) return false;
+	ConnectionButton->OnClicked.AddDynamic(this, &UMainMenu::ConnectionButtonOnClicked);
+
+	if (!ensure(JoinMenu_CancleButton != nullptr)) return false;
+	JoinMenu_CancleButton->OnClicked.AddDynamic(this, &UMainMenu::JoinMenu_CancleButtonOnClicked);
+
+	if (!ensure(QuitButton != nullptr)) return false;
+	QuitButton->OnClicked.AddDynamic(this, &UMainMenu::QuitGame);
 
 	return true;
 }
 
-void UMainMenu::OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld)
-{
-	TearDown();
-	Super::OnLevelRemovedFromWorld(InLevel, InWorld);
-}
 
-void UMainMenu::Setup(IMenuInterface* _MenuInterface)
-{
-	UWorld* World = GetWorld();
-	if (!ensure(World != nullptr)) return;
-
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-	//UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(PlayerController, Menu, EMouseLockMode::LockAlways);
-	// (아래 프로세스를 합친 것)
-	FInputModeUIOnly InputModeData;
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-	bIsFocusable = true;
-	PlayerController->SetInputMode(InputModeData);
-
-	PlayerController->bShowMouseCursor = true;
-
-	AddToViewport();
-	SetMenuInterface(_MenuInterface);
-}
-
-void UMainMenu::TearDown()
-{
-	UE_LOG(LogTemp, Warning, TEXT("MainMenu TearDown"));
-
-	UWorld* World = GetWorld();
-	if (!ensure(World != nullptr)) return;
-
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) return;
-
-	PlayerController->SetInputMode(FInputModeGameOnly());
-	PlayerController->bShowMouseCursor = false;
-}
-
-void UMainMenu::SetMenuInterface(IMenuInterface* _MenuInterface)
-{
-	this->MenuInterface = _MenuInterface;
-}
-
-void UMainMenu::HostBtnOnClicked()
+void UMainMenu::HostServer()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Host Button Clicked"));
 
@@ -81,18 +47,36 @@ void UMainMenu::HostBtnOnClicked()
 	MenuInterface->Host();
 }
 
-void UMainMenu::JoinBtnOnClicked()
+void UMainMenu::OpenJoinMenu()
 {
 	if (!ensure(MenuSwitcher != nullptr)) return;
-	MenuSwitcher->SetActiveWidgetIndex(1);
+	if (!ensure(JoinMenu != nullptr)) return;
 
-	UE_LOG(LogTemp, Warning, TEXT("%d"), MenuSwitcher->ActiveWidgetIndex);
+	MenuSwitcher->SetActiveWidget(JoinMenu);
 }
 
-void UMainMenu::ConnectionBtnOnClicked()
+void UMainMenu::ConnectionButtonOnClicked()
 {
-	if (!ensure(IPAddressTextBox != nullptr)) return;
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), *IPAddressTextBox->Text.ToString());
+	if (MenuInterface != nullptr)
+	{
+		if (!ensure(IPAddressTextBox != nullptr)) return;
 
-	MenuInterface->Join(IPAddressTextBox->Text.ToString());
+		MenuInterface->Join(IPAddressTextBox->GetText().ToString());
+	}
+	
+}
+
+void UMainMenu::JoinMenu_CancleButtonOnClicked()
+{
+	if (!ensure(MenuSwitcher != nullptr)) return;
+	if (!ensure(MainMenu != nullptr)) return;
+
+	MenuSwitcher->SetActiveWidget(MainMenu);
+}
+
+void UMainMenu::QuitGame()
+{
+	if (!ensure(MenuInterface != nullptr)) return;
+
+	MenuInterface->QuitGame();
 }

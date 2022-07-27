@@ -39,6 +39,18 @@
     <Filter Include="Source\UnrealStudy">
       <UniqueIdentifier>{5251B292-1A03-3F1F-9326-0DE0A0F2F582}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\UnrealStudy\GoKart.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\GoKart.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\KrazyKartsGameMode.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\KrazyKartsGameMode.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\UnrealStudy\MovingPlatform.cpp">
       <Filter>Source\UnrealStudy</Filter>
     </ClCompile>
@@ -81,6 +93,12 @@
     <Filter Include="Source\UnrealStudy\MenuSystem">
       <UniqueIdentifier>{0311B6FD-AC77-3BAE-B0BA-8836F762B179}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\UnrealStudy\MenuSystem\InGameMenu.cpp">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MenuSystem\InGameMenu.h">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\UnrealStudy\MenuSystem\MainMenu.cpp">
       <Filter>Source\UnrealStudy\MenuSystem</Filter>
     </ClCompile>
@@ -91,6 +109,12 @@
       <Filter>Source\UnrealStudy\MenuSystem</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\UnrealStudy\MenuSystem\MenuInterface.h">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\MenuSystem\MenuWidget.cpp">
+      <Filter>Source\UnrealStudy\MenuSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MenuSystem\MenuWidget.h">
       <Filter>Source\UnrealStudy\MenuSystem</Filter>
     </ClInclude>
   </ItemGroup>

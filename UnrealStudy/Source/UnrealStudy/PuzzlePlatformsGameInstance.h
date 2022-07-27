@@ -22,6 +22,9 @@ public:
 
 	UFUNCTION(Exec, BlueprintCallable)
 	void LoadMenu();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadInGameMenu();
 protected:
 	virtual void Init();
 
@@ -33,6 +36,14 @@ public:
 	virtual void Join(const FString& ServerAddress) override;
 
 private:
+	virtual void LoadMainMenu() override;
+
+	virtual void QuitGame() override;
+
+private:
 	TSubclassOf<class UMainMenu> MenuClass;
 	class UMainMenu* MainMenu;
+
+	TSubclassOf<class UInGameMenu> InGameMenuClass;
+	class UInGameMenu* InGameMenu;
 };

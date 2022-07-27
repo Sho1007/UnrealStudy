@@ -16,8 +16,42 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudyCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AUnrealStudyCharacter::execOpenInGameMenu)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->OpenInGameMenu();
+		P_NATIVE_END;
+	}
 	void AUnrealStudyCharacter::StaticRegisterNativesAUnrealStudyCharacter()
 	{
+		UClass* Class = AUnrealStudyCharacter::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "OpenInGameMenu", &AUnrealStudyCharacter::execOpenInGameMenu },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "UnrealStudyCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AUnrealStudyCharacter, nullptr, "OpenInGameMenu", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AUnrealStudyCharacter);
 	UClass* Z_Construct_UClass_AUnrealStudyCharacter_NoRegister()
@@ -27,6 +61,7 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudyCharacter() {}
 	struct Z_Construct_UClass_AUnrealStudyCharacter_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -49,6 +84,9 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudyCharacter() {}
 	UObject* (*const Z_Construct_UClass_AUnrealStudyCharacter_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_UnrealStudy,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_AUnrealStudyCharacter_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AUnrealStudyCharacter_OpenInGameMenu, "OpenInGameMenu" }, // 2466627043
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AUnrealStudyCharacter_Statics::Class_MetaDataParams[] = {
@@ -101,11 +139,11 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudyCharacter() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_AUnrealStudyCharacter_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_AUnrealStudyCharacter_Statics::PropPointers),
 		0,
 		0x008000A4u,
@@ -129,9 +167,9 @@ void EmptyLinkFunctionForGeneratedCodeUnrealStudyCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AUnrealStudyCharacter, AUnrealStudyCharacter::StaticClass, TEXT("AUnrealStudyCharacter"), &Z_Registration_Info_UClass_AUnrealStudyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AUnrealStudyCharacter), 3409355105U) },
+		{ Z_Construct_UClass_AUnrealStudyCharacter, AUnrealStudyCharacter::StaticClass, TEXT("AUnrealStudyCharacter"), &Z_Registration_Info_UClass_AUnrealStudyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AUnrealStudyCharacter), 1809551200U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_3177832185(TEXT("/Script/UnrealStudy"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_1298529598(TEXT("/Script/UnrealStudy"),
 		Z_CompiledInDeferFile_FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

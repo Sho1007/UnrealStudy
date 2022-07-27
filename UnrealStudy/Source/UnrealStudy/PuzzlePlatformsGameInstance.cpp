@@ -7,6 +7,10 @@
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "MenuSystem/MainMenu.h"
+#include "MenuSystem/InGameMenu.h"
+#include "MenuSystem/MenuWidget.h"
+
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -14,22 +18,40 @@ UPuzzlePlatformsGameInstance::UPuzzlePlatformsGameInstance(const FObjectInitiali
 	if (!ensure(MenuBPClass.Class != nullptr)) return;
 
 	MenuClass = MenuBPClass.Class;
+
+	ConstructorHelpers::FClassFinder<UInGameMenu> InGameMenuBPClass(TEXT("/Game/PuzzlePlatforms/MenuSystem/WBP_InGameMenu"));
+	if (!ensure(InGameMenuBPClass.Class != nullptr)) return;
+
+	InGameMenuClass = InGameMenuBPClass.Class;
 }
 
 void UPuzzlePlatformsGameInstance::Init()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Founded Class : %s"), *MenuClass->GetName());
 }
 
 void UPuzzlePlatformsGameInstance::LoadMenu()
 {
 	if (!ensure(MenuClass != nullptr)) return;
-
 	MainMenu = CreateWidget<UMainMenu>(this, MenuClass);
 
 	if (!ensure(MainMenu != nullptr)) return;
+	MainMenu->Setup();
+	MainMenu->SetMenuInterface(this);
+}
 
-	MainMenu->Setup(this);
+void UPuzzlePlatformsGameInstance::LoadInGameMenu()
+{
+	if (!ensure(InGameMenuClass != nullptr)) return;
+
+	if (InGameMenu == nullptr)
+	{
+		InGameMenu = CreateWidget<UInGameMenu>(this, InGameMenuClass);
+		if (!ensure(InGameMenu != nullptr)) return;
+		InGameMenu->SetMenuInterface(this);
+	}
+
+	if (!ensure(InGameMenu != nullptr)) return;
+	InGameMenu->Setup();
 }
 
 void UPuzzlePlatformsGameInstance::Host()
@@ -52,4 +74,20 @@ void UPuzzlePlatformsGameInstance::Join(const FString& ServerAddress)
 	if (!ensure(PlayerController != nullptr)) return;
 
 	PlayerController->ClientTravel(ServerAddress, ETravelType::TRAVEL_Absolute);
+}
+
+void UPuzzlePlatformsGameInstance::LoadMainMenu()
+{
+	APlayerController* PlayerController = this->GetFirstLocalPlayerController(GetWorld());
+	if (!ensure(PlayerController != nullptr)) return;
+
+	PlayerController->ClientTravel("/Game/PuzzlePlatforms/Maps/MainMenu", ETravelType::TRAVEL_Absolute);
+}
+
+void UPuzzlePlatformsGameInstance::QuitGame()
+{
+	APlayerController* PlayerController = this->GetFirstLocalPlayerController(GWorld);
+	if (!ensure(PlayerController != nullptr)) return;
+
+	PlayerController->ConsoleCommand(FString("quit"), false);
 }

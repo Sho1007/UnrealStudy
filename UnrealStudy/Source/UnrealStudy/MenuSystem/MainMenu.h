@@ -3,8 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
-#include "./MenuInterface.h"
+#include "./MenuWidget.h"
 
 #include "MainMenu.generated.h"
 
@@ -13,45 +12,54 @@
  * 
  */
 UCLASS()
-class UNREALSTUDY_API UMainMenu : public UUserWidget
+class UNREALSTUDY_API UMainMenu : public UMenuWidget
 {
 	GENERATED_BODY()
-public:
-	void SetMenuInterface(IMenuInterface* _MenuInterface);
-
-	void Setup(IMenuInterface* _MenuInterface);
-
-	void TearDown();
 
 protected:
 	virtual bool Initialize() override;
-	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
 private:
 	UPROPERTY(meta = (BindWidget))
-	class UButton* Host;
+	class UButton* QuitButton;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* Join;
+	class UButton* HostButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* JoinButton;
 
 	UPROPERTY(meta = (BindWidget))
 	class UEditableTextBox* IPAddressTextBox;
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* ConnectionBtn;
+	class UButton* ConnectionButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* JoinMenu_CancleButton;
 
 	UPROPERTY(meta = (BindWidget))
 	class UWidgetSwitcher* MenuSwitcher;
 
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* MainMenu;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* JoinMenu;
+
 private:
 	UFUNCTION()
-	void HostBtnOnClicked();
+	void HostServer();
 
 	UFUNCTION()
-	void JoinBtnOnClicked();
+	void OpenJoinMenu();
 
 	UFUNCTION()
-	void ConnectionBtnOnClicked();
+	void ConnectionButtonOnClicked();
 
-	IMenuInterface* MenuInterface;
+	UFUNCTION()
+	void JoinMenu_CancleButtonOnClicked();
+
+	UFUNCTION()
+	void QuitGame();
 };

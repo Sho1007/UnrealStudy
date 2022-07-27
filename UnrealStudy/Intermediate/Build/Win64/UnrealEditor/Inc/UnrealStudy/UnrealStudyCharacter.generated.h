@@ -14,8 +14,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define UNREALSTUDY_UnrealStudyCharacter_generated_h
 
 #define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_SPARSE_DATA
-#define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_RPC_WRAPPERS
-#define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOpenInGameMenu);
+
+
+#define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOpenInGameMenu);
+
+
 #define FID_UnrealStudy_Source_UnrealStudy_UnrealStudyCharacter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAUnrealStudyCharacter(); \
