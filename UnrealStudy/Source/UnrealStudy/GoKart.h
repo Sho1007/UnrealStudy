@@ -63,6 +63,20 @@ private:
 	UFUNCTION(Server, Reliable, WithValidation)
 	void Server_MoveRight(float Value);
 
+	UPROPERTY(ReplicatedUsing = OnRep_ReplicatedLocation)
+	FVector ReplicatedLocation;
+
+public:
+	UFUNCTION()
+	void OnRep_ReplicatedLocation();
+
+	UFUNCTION()
+	void OnRep_ReplicatedRotation();
+
+private:
+	UPROPERTY(ReplicatedUsing = OnRep_ReplicatedRotation)
+	FRotator ReplicatedRotation;
+
 	FVector Velocity;
 
 	float Throttle;

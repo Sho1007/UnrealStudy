@@ -7,10 +7,12 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/BoxComponent.h"
 #include "DrawDebugHelpers.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AGoKart::AGoKart()
 {
+	bReplicates = true;
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -35,6 +37,19 @@ AGoKart::AGoKart()
 void AGoKart::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (HasAuthority())
+	{
+		NetUpdateFrequency = 1;
+	}
+}
+
+void AGoKart::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AGoKart, ReplicatedLocation);
+	DOREPLIFETIME(AGoKart, ReplicatedRotation);
 }
 
 FString GetEnumText(ENetRole Role)
@@ -66,6 +81,32 @@ void AGoKart::Tick(float DeltaTime)
 	UpdateLocationFromVelocity(DeltaTime);
 
 	ApplyRotation(DeltaTime);
+
+	if (HasAuthority())
+	{
+		ReplicatedLocation = GetActorLocation();
+		ReplicatedRotation = GetActorRotation();
+	}
+}
+
+void AGoKart::OnRep_ReplicatedLocation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Replicated Location"));
+
+	if (!HasAuthority())
+	{
+		SetActorLocation(ReplicatedLocation);
+	}
+}
+
+void AGoKart::OnRep_ReplicatedRotation()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Replicated Rotation"));
+
+	if (!HasAuthority())
+	{
+		SetActorRotation(ReplicatedRotation);
+	}
 }
 
 FVector AGoKart::GetRollingResistance()
