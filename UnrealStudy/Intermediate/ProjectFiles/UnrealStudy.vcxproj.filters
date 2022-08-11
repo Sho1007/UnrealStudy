@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\..\UnrealStudy.uproject" />
     <Filter Include="Source">
@@ -43,6 +43,18 @@
       <Filter>Source\UnrealStudy</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\UnrealStudy\GoKart.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\GoKartMovementComponent.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\GoKartMovementComponent.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\GoKartMovementReplicator.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\GoKartMovementReplicator.h">
       <Filter>Source\UnrealStudy</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\UnrealStudy\KrazyKartsGameMode.cpp">

@@ -7,7 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Components/BoxComponent.h"
 #include "DrawDebugHelpers.h"
-#include "Net/UnrealNetwork.h"
+
 
 // Sets default values
 AGoKart::AGoKart()
@@ -15,6 +15,8 @@ AGoKart::AGoKart()
 	bReplicates = true;
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	SetReplicateMovement(false);
 
 	//RootComponent = CreateDefaultSubobject<USceneComponent>(FName("RootComponent"));
 
@@ -31,6 +33,14 @@ AGoKart::AGoKart()
 	RootComponent = Box;
 
 	Camera->SetRelativeLocation(FVector(0, 0, 10.0f));
+
+	MovementComponent = CreateDefaultSubobject<UGoKartMovementComponent>(FName("MovementComponent"));
+	if (!ensure(MovementComponent != nullptr)) return;
+
+	MovementReplicator = CreateDefaultSubobject<UGoKartMovementReplicator>(FName("MovementReplicator"));
+	if (!ensure(MovementReplicator != nullptr)) return;
+
+	MovementReplicator->SetMovementComponent(MovementComponent);
 }
 
 // Called when the game starts or when spawned
@@ -42,14 +52,6 @@ void AGoKart::BeginPlay()
 	{
 		NetUpdateFrequency = 1;
 	}
-}
-
-void AGoKart::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	DOREPLIFETIME(AGoKart, ReplicatedLocation);
-	DOREPLIFETIME(AGoKart, ReplicatedRotation);
 }
 
 FString GetEnumText(ENetRole Role)
@@ -74,101 +76,13 @@ void AGoKart::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	GetRollingResistance();
-
 	DrawDebugString(GWorld, FVector(0, 0, 100), GetEnumText(GetLocalRole()), this, FColor::White, DeltaTime);
-
-	UpdateLocationFromVelocity(DeltaTime);
-
-	ApplyRotation(DeltaTime);
-
-	if (HasAuthority())
-	{
-		ReplicatedLocation = GetActorLocation();
-		ReplicatedRotation = GetActorRotation();
-	}
 }
-
-void AGoKart::OnRep_ReplicatedLocation()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Replicated Location"));
-
-	if (!HasAuthority())
-	{
-		SetActorLocation(ReplicatedLocation);
-	}
-}
-
-void AGoKart::OnRep_ReplicatedRotation()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Replicated Rotation"));
-
-	if (!HasAuthority())
-	{
-		SetActorRotation(ReplicatedRotation);
-	}
-}
-
-FVector AGoKart::GetRollingResistance()
-{
-	float AccelerationDueToGravity = -GetWorld()->GetGravityZ() / 100;
-
-	float NormalForce = Mass * AccelerationDueToGravity;
-
-	return -Velocity.GetSafeNormal() * RollCoefficient * NormalForce;
-}
-
-FVector AGoKart::GetAirResistance()
-{
-
-	return Velocity.SizeSquared() * DragCoefficient * - Velocity.GetSafeNormal();
-}
-
-void AGoKart::ApplyRotation(float DeltaTime)
-{
-	float DeltaLocation = FVector::DotProduct(GetActorForwardVector(), Velocity) * DeltaTime;
-
-	float RotationAngle =  DeltaLocation / MinTurningRadius * SteeringThrow;
-
-	FQuat RotationDelta(GetActorUpVector(), RotationAngle);
-
-	Velocity = RotationDelta.RotateVector(Velocity);
-
-	AddActorWorldRotation(RotationDelta);
-}
-
-void AGoKart::UpdateLocationFromVelocity(float DeltaTime)
-{
-	FVector Force = GetActorForwardVector() * MaxDrivingForce * Throttle;
-
-	Force += GetAirResistance();
-	Force += GetRollingResistance();
-
-	FVector Acceleration = Force / Mass;
-
-	Velocity += Acceleration * DeltaTime;
-
-	FVector Translation = Velocity * DeltaTime * 100;
-
-	AddActorWorldOffset(Translation, true, &Hit);
-
-	if (Hit.IsValidBlockingHit())
-	{
-		//Velocity *= 0;
-	}
-		
-}
-
-
 
 // Called to bind functionality to input
 void AGoKart::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	float Speed = Velocity.Size();
-
-	Velocity += Speed * Speed * 0.29 * Velocity.ForwardVector * -1;
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGoKart::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AGoKart::MoveRight);
@@ -176,33 +90,16 @@ void AGoKart::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AGoKart::MoveForward(float Value)
 {
-	Throttle = Value;
-	Server_MoveForward(Value);
+	if (!ensure(MovementComponent != nullptr)) return;
+
+	GEngine->AddOnScreenDebugMessage(1, 5.0f, FColor::Red, FString::Printf(TEXT("%d"), Value));
+
+	MovementComponent->SetThrottle(Value);
 }
 
 void AGoKart::MoveRight(float Value)
 {
-	SteeringThrow = Value;
-	Server_MoveRight(Value);
-}
+	if (!ensure(MovementComponent != nullptr)) return;
 
-
-void AGoKart::Server_MoveForward_Implementation(float Value)
-{
-	Throttle = Value;
-}
-
-bool AGoKart::Server_MoveForward_Validate(float Value)
-{
-	return (Value >= -1 && Value <= 1);
-}
-
-void AGoKart::Server_MoveRight_Implementation(float Value)
-{
-	SteeringThrow = Value;
-}
-
-bool AGoKart::Server_MoveRight_Validate(float Value)
-{
-	return (Value >= -1 && Value <= 1);
+	MovementComponent->SetSteeringThrow(Value);
 }

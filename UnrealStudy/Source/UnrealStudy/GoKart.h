@@ -4,7 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GokartMovementComponent.h"
+#include "GoKartMovementReplicator.h"
 #include "GoKart.generated.h"
+
+
+
+
 
 UCLASS()
 class UNREALSTUDY_API AGoKart : public APawn
@@ -23,10 +29,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
-
-	
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -43,62 +45,12 @@ public:
 	class USpringArmComponent* SpringArm;
 
 private:
-	FVector GetRollingResistance();
+	UPROPERTY(VisibleAnywhere)
+	UGoKartMovementComponent* MovementComponent;
 
-	FVector GetAirResistance();
-
-	void ApplyRotation(float DeltaTime);
-
-	void UpdateLocationFromVelocity(float DeltaTime);
-
-	FHitResult Hit;
+	UPROPERTY(VisibleAnywhere)
+	UGoKartMovementReplicator* MovementReplicator;
 
 	void MoveForward(float Value);
-
 	void MoveRight(float Value);
-
-	UFUNCTION(Server, Reliable, WithValidation)
-	void Server_MoveForward(float Value);
-	
-	UFUNCTION(Server, Reliable, WithValidation)
-	void Server_MoveRight(float Value);
-
-	UPROPERTY(ReplicatedUsing = OnRep_ReplicatedLocation)
-	FVector ReplicatedLocation;
-
-public:
-	UFUNCTION()
-	void OnRep_ReplicatedLocation();
-
-	UFUNCTION()
-	void OnRep_ReplicatedRotation();
-
-private:
-	UPROPERTY(ReplicatedUsing = OnRep_ReplicatedRotation)
-	FRotator ReplicatedRotation;
-
-	FVector Velocity;
-
-	float Throttle;
-	float SteeringThrow;
-
-	// Mass of the car (kg)
-	UPROPERTY(EditAnywhere)
-	float Mass = 1000;
-
-	// The force applied to the car when the throttle is fully down (N)
-	UPROPERTY(EditAnywhere)
-	float MaxDrivingForce = 10000;
-
-	// Minimum radius of the car turning circle at full lock (m).
-	UPROPERTY(EditAnywhere)
-	float MinTurningRadius = 10;
-
-	// Higher means more drag (kg/m).
-	UPROPERTY(EditAnywhere)
-	float DragCoefficient = 16;
-
-	// Higher means more rolling resistance.
-	UPROPERTY(EditAnywhere)
-	float RollCoefficient = 0.015;
 };
