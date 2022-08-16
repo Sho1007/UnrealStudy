@@ -57,6 +57,12 @@
     <ClInclude Include="..\..\Source\UnrealStudy\GoKartMovementReplicator.h">
       <Filter>Source\UnrealStudy</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\Knight.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\Knight.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\UnrealStudy\KrazyKartsGameMode.cpp">
       <Filter>Source\UnrealStudy</Filter>
     </ClCompile>
@@ -67,6 +73,12 @@
       <Filter>Source\UnrealStudy</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\UnrealStudy\MovingPlatform.h">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealStudy\MyAnimInstance.cpp">
+      <Filter>Source\UnrealStudy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealStudy\MyAnimInstance.h">
       <Filter>Source\UnrealStudy</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\UnrealStudy\PlatformTrigger.cpp">

@@ -18,22 +18,6 @@ AGoKart::AGoKart()
 
 	SetReplicateMovement(false);
 
-	//RootComponent = CreateDefaultSubobject<USceneComponent>(FName("RootComponent"));
-
-	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(FName("Mesh"));
-	SpringArm = CreateDefaultSubobject <USpringArmComponent>(FName("SpringArm"));
-	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
-	Camera->SetupAttachment(SpringArm);
-	SpringArm->SetupAttachment(Mesh);
-
-	Box = CreateDefaultSubobject<UBoxComponent>(FName("Box"));
-	Mesh->SetupAttachment(Box);
-	Mesh->SetRelativeLocation(FVector(-14, 0, -54));
-
-	RootComponent = Box;
-
-	Camera->SetRelativeLocation(FVector(0, 0, 10.0f));
-
 	MovementComponent = CreateDefaultSubobject<UGoKartMovementComponent>(FName("MovementComponent"));
 	if (!ensure(MovementComponent != nullptr)) return;
 
@@ -41,6 +25,23 @@ AGoKart::AGoKart()
 	if (!ensure(MovementReplicator != nullptr)) return;
 
 	MovementReplicator->SetMovementComponent(MovementComponent);
+
+	Box = CreateDefaultSubobject<UBoxComponent>(FName("Box"));
+	Box->bHiddenInGame = false;
+	RootComponent = Box;
+
+	MeshOffsetRoot = CreateDefaultSubobject<USceneComponent>(FName("MeshOffsetRoot"));
+	MovementReplicator->SetMeshOffsetRoot(MeshOffsetRoot);
+
+	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(FName("Mesh"));
+	SpringArm = CreateDefaultSubobject <USpringArmComponent>(FName("SpringArm"));
+	Camera = CreateDefaultSubobject<UCameraComponent>(FName("Camera"));
+
+
+	Camera->SetupAttachment(SpringArm);
+	SpringArm->SetupAttachment(Mesh);
+	Mesh->SetupAttachment(MeshOffsetRoot);
+	MeshOffsetRoot->SetupAttachment(Box);
 }
 
 // Called when the game starts or when spawned
@@ -91,8 +92,6 @@ void AGoKart::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AGoKart::MoveForward(float Value)
 {
 	if (!ensure(MovementComponent != nullptr)) return;
-
-	GEngine->AddOnScreenDebugMessage(1, 5.0f, FColor::Red, FString::Printf(TEXT("%d"), Value));
 
 	MovementComponent->SetThrottle(Value);
 }

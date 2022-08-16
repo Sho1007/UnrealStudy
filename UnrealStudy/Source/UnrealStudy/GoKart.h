@@ -46,6 +46,9 @@ public:
 
 private:
 	UPROPERTY(VisibleAnywhere)
+	USceneComponent* MeshOffsetRoot;
+
+	UPROPERTY(VisibleAnywhere)
 	UGoKartMovementComponent* MovementComponent;
 
 	UPROPERTY(VisibleAnywhere)
